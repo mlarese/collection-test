@@ -1,8 +1,8 @@
 Meteor.methods({
-    calcCashBackTree:function(){
+    calcCashBackTree:function(purchase_id){
         try {
-            console.log(arguments)
-            var purchase = Purchases.findOne();
+
+            var purchase = Purchases.findOne(purchase_id);
 
             var buyer =  purchase.buyer();
             var seller =  purchase.seller();
@@ -24,17 +24,20 @@ Meteor.methods({
                     grandChild:null
                 }
             }
-
-
-
+ 
             if(buyer.cashbackProfile) {
                 if (buyer.cashbackProfile.parentType == 'seller') {
-                    var relSeller= Seller.byEmail(buyer.cashbackProfile.parent);
-                    var relPartner = relSeller.partner();
-                    console.log(relSeller.profile.email)
-                    console.log(relPartner.profile.email)
-                    cashbackTree.relationalTree.seller = relSeller ;
-                    cashbackTree.relationalTree.partner = relPartner ;
+                    var relSeller= Seller.byEmail(buyer.cashbackProfile.parent) ;
+
+                    if(relSeller){
+                        var relPartner = relSeller.partner();
+                        var relInformer = relSeller.informer();
+
+                        cashbackTree.relationalTree.seller = relSeller  ;
+                        cashbackTree.relationalTree.partner = relPartner  ;
+                        cashbackTree.relationalTree.informer = relInformer  ;
+                    }
+
                 }
             }
 
@@ -44,7 +47,7 @@ Meteor.methods({
             //console.log('buyer='+buyer.profile.email)
             //console.log('seller='+seller.profile.email)
 
-            //console.log(cashbackTree)
+            console.log(cashbackTree)
         }catch(e){
             console.log("error:"+e);
         }
@@ -52,5 +55,7 @@ Meteor.methods({
 
 })
 
-var purchase = Purchases.findOne();
-Meteor.call('calcCashBackTree',purchase);
+if(Meteor.isServer) {
+    var purchase = Purchases.findOne();
+    Meteor.call('calcCashBackTree', purchase._id);
+}

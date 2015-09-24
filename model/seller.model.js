@@ -18,10 +18,12 @@ var fn =  {
 angular.extend(Seller,fn);
 
 Seller.helpers ({
-
-  partner:function(){
+    informer:function(){
+        return Informers.findOne({'sellersId':  this.profile.email});
+    },
+    partner:function(){
       return Partner.findOne({'sellersId':  this.profile.email});
-  }
+    }
 })
 
 Seller.allow({
