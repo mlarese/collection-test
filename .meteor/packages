@@ -1,0 +1,34 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+less
+urigo:angular
+http
+cfs:http-methods
+aldeed:collection2
+anti:methods
+accounts-password
+accounts-facebook
+service-configuration
+email
+meteorhacks:ssr
+useraccounts:core
+useraccounts:bootstrap
+force-ssl
+tmeasday:publish-counts
+accounts-ui
+softwarerero:accounts-t9n
+momentjs:moment
+angular:angular-server
+netanelgilad:angular-server
+alanning:roles
+meteorhacks:fast-render
+matb33:collection-hooks
+mdg:camera
+flot:flot
+jackyqiu:meteor-jvectormap
+dburles:collection-helpers
