@@ -1,5 +1,10 @@
-var p=Purchases.findOne()
+try {
+    var purchase = Purchases.findOne() .buyer();
+    var sellers = Informers.findOne().sellers().fetch();
+    var informerBySeller = Informers.bySellerFly('alberto.valentini@gmail.com')  ;
+    //console.log(sellers)
+    console.log(informerBySeller.fetch())
 
-var buyer =Purchases.findOne().buyer();
-
-console.log(buyer)
+}catch(e){
+    console.log(e)
+}

@@ -4,7 +4,7 @@ Meteor.startup(function() {
       _id:'1',
       profile:{name:'Confederazione albergatori',
       email:'confal@gmail.com'},
-      sellersId:['hotelgarda@gmail.com']
+      sellersId:['hotelgarda@gmail.com','marco.anselmi@gmail.com','marino.sozzi@gmail.com']
     });
     Informers.insert({
       _id:'2',
