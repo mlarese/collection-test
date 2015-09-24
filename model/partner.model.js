@@ -9,6 +9,11 @@ Partner.attachSchema( new SimpleSchema({
   sellersId:{type:[String],optional:true,defaultValue:[]}
 }) );
 
+
+Partner.helpers({
+  sellers: function() { return Seller.find({'profile.email':{$in: this.sellersId}});   }
+});
+
 Partner.allow({
   insert: function(userId, partner) {
     return userId;

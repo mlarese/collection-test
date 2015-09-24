@@ -10,6 +10,20 @@ Seller.attachSchema( new SimpleSchema({
   status:{type:String,optional:true,defaultValue:'simple'}
 }) );
 
+var fn =  {
+  byEmail : function(sellerEmail) {
+    return Seller.findOne({'profile.email':sellerEmail});
+  }
+}
+angular.extend(Seller,fn);
+
+Seller.helpers ({
+
+  partner:function(){
+      return Partner.findOne({'sellersId':  this.profile.email});
+  }
+})
+
 Seller.allow({
   insert: function(userId, seller) {
     return userId;

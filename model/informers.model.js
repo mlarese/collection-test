@@ -18,12 +18,11 @@ var fn =  {
         return Informers.find({'sellersId':sellerEmail});
     },
     bySellerFly : function(sellerEmail) {
-        return Informers.find({'sellersId':sellerEmail},{fields:{address:0,financialProfile:0}  });
+        return Informers.find({'sellersId':sellerEmail},{fields:{"profile.name":1,"profile.email":1}  });
     }
 }
-
-
 angular.extend(Informers,fn);
+
 Informers.allow({
   insert: function(userId, informer) {
     return userId;

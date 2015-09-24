@@ -23,7 +23,7 @@ Purchases.attachSchema( new SimpleSchema({
 
 Purchases.helpers({
     buyer: function() { return Buyers.findOne(this.buyerId); },
-    seller: function() { return Sellers.findOne(this.sellerId); }
+    seller: function() { return Seller.findOne(this.sellerId); }
 });
 
 
